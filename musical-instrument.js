@@ -1,13 +1,13 @@
 var aColor = "#629FE6";
 
-var freqA = 200;
-var freqB = 150;
+var freqA = 523.25;
+var freqB = 333.3;
 var freqS = 196;
-var freqD = 220;
-var freqF = 200;
+var freqD = 493.88;
+var freqF = 254;
 
 
-var oscA,oscB, oscS, oscD, oscF;
+var oscA, oscB, oscS, oscD, oscF;
 var cnv;
 
 var playingA, playingB, playingS, playingD, playingF;
@@ -30,7 +30,7 @@ function setup() {
     oscA.freq(freqA);
     oscA.amp(0);
     oscA.start();
-    
+
     oscB = new p5.Oscillator();
     oscB.setType('sin');
     oscB.freq(freqB);
@@ -38,7 +38,7 @@ function setup() {
     oscB.start();
 
     oscS = new p5.Oscillator();
-    oscS.setType('sawtooth');
+    oscS.setType('triangle');
     oscS.freq(freqS);
     oscS.amp(0);
     oscS.start();
@@ -67,7 +67,7 @@ function setup() {
     fft = new p5.FFT();
 
 
-  drawClickArea();
+    drawClickArea();
 
     //colorMode(HSB);
 }
@@ -100,15 +100,15 @@ function soundOn() {
 
     if (!playingA && mouseX > 55 && mouseX < 110 && mouseY < 245 && mouseY > 205) {
         oscA.amp(0.5, 0.1);
-      playingA = true;
-    
+        playingA = true;
+
     } else if (!playingB && mouseX > 65 && mouseX < 100 && mouseY < 100 && mouseY > 65) {
         playingB = true;
         oscB.amp(0.5, 0.1);
-    }else if (!playingS && mouseX > 200 && mouseX < 246 && mouseY < 70 && mouseY > 35) {
+    } else if (!playingS && mouseX > 200 && mouseX < 246 && mouseY < 70 && mouseY > 35) {
         playingS = true;
         oscS.amp(0.5, 0.1);
-    } else if (!playingD && mouseX > 200 && mouseX < 225 && mouseY < 385 && mouseY >365) {
+    } else if (!playingD && mouseX > 200 && mouseX < 225 && mouseY < 385 && mouseY > 365) {
         playingD = true;
         oscD.amp(0.5, 0.1);
     } else if (!playingF && mouseX > 300 && mouseX < 340 && mouseY < 300 && mouseY > 260) {
@@ -141,7 +141,7 @@ function draw() {
     filter.res(100);
     isMouseOverCanvas();
     var mX = mouseX,
-          mY = mouseY;
+        mY = mouseY;
 
     if (mX > 85 && mX < 350 && mY < 300 && mY > 85) {
         noise.amp(0.9, 0.2);
@@ -162,5 +162,5 @@ function isMouseOverCanvas() {
     } else {
         noise.amp(0, 0.2);
     }
-    
+
 }
